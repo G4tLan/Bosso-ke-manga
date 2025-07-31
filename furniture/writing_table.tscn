@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbs1uvgiqyjv4"]
+
+[ext_resource type="Texture2D" uid="uid://du0i4km8glo5" path="res://assets/free-office-pixel-art/writing-table.png" id="1_267mj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4y5fg"]
+size = Vector2(38, 23)
+
+[node name="Writing-table" type="Sprite2D"]
+texture = ExtResource("1_267mj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_4y5fg")

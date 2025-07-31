@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1datk5k3qsk7"]
+
+[ext_resource type="Texture2D" uid="uid://dwajdmjsww6e" path="res://assets/free-office-pixel-art/Chair.png" id="1_06weo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xj176"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkbs"]
+size = Vector2(16, 8)
+
+[node name="Chair" type="Sprite2D"]
+texture = ExtResource("1_06weo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+physics_material_override = SubResource("PhysicsMaterial_xj176")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4)
+scale = Vector2(0.7, 1)
+shape = SubResource("RectangleShape2D_dqkbs")

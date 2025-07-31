@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://os06wd8ee6pp"]
+
+[ext_resource type="Texture2D" uid="uid://bt7h3fyoc3nf3" path="res://assets/free-office-pixel-art/coffee-maker.png" id="1_dmpog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr0kf"]
+size = Vector2(60, 19)
+
+[node name="Coffee-maker" type="Sprite2D"]
+texture = ExtResource("1_dmpog")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_qr0kf")

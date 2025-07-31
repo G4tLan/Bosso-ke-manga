@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://gtqiq8eklbq8"]
+
+[ext_resource type="Texture2D" uid="uid://uonj7pldnfg4" path="res://assets/free-office-pixel-art/office-partitions-2.png" id="1_prm7x"]
+[ext_resource type="Texture2D" uid="uid://ci7p11ijmugpd" path="res://assets/free-office-pixel-art/office-partitions-1.png" id="2_5hdl0"]
+
+[node name="cubicle" type="Node2D"]
+
+[node name="t-divider" type="Sprite2D" parent="."]
+position = Vector2(66, -24)
+texture = ExtResource("1_prm7x")
+
+[node name="t-divider2" type="Sprite2D" parent="."]
+position = Vector2(130, -24)
+texture = ExtResource("1_prm7x")
+
+[node name="l-divider" type="Sprite2D" parent="."]
+position = Vector2(2, -24)
+texture = ExtResource("1_prm7x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(0, 45, 3, 45, 3, 12, 64, 12, 64, 45, 67, 45, 67, 12, 128, 12, 128, 45, 131, 45, 131, -52, 128, -52, 128, 0, 67, 0, 67, -52, 64, -52, 64, 0, 3, 0, 3, -52, 0, -52)
+
+[node name="Office-partitions-4" type="Sprite2D" parent="."]
+position = Vector2(2, 13)
+texture = ExtResource("1_prm7x")
+
+[node name="Office-partitions-1" type="Sprite2D" parent="."]
+position = Vector2(35, 13)
+texture = ExtResource("2_5hdl0")
+
+[node name="Office-partitions-2" type="Sprite2D" parent="."]
+position = Vector2(99, 13)
+texture = ExtResource("2_5hdl0")

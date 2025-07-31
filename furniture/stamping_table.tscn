@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7bfo8dspr16t"]
+
+[ext_resource type="Texture2D" uid="uid://cmnx4l4olkdkv" path="res://assets/free-office-pixel-art/stamping-table.png" id="1_q6301"]
+
+[node name="Stamping-table" type="Sprite2D"]
+texture = ExtResource("1_q6301")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-27, 11, -19, 11, -19, 13, -15, 13, 19, 13, 19, -9, -19, -9, -19, -4, -27, -4)

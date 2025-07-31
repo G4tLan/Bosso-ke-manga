@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://uy5rthx4fqjl"]
+
+[ext_resource type="Texture2D" uid="uid://ctkv2bsg5ik5v" path="res://assets/free-office-pixel-art/desk.png" id="1_17fcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug7os"]
+size = Vector2(38, 20)
+
+[node name="Desk" type="Sprite2D"]
+texture = ExtResource("1_17fcx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ug7os")
