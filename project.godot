@@ -15,9 +15,18 @@ run/main_scene="uid://tcht53o1ygxw"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TreeWatcher="*res://addons/novatools/tree_watcher.gd"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/novatools/plugin.cfg", "res://addons/vcs/addons/vcs_export_platform/plugin.cfg")
 
 [global_group]
 
@@ -52,6 +61,10 @@ down={
 
 [layer_names]
 
+2d_physics/layer_1="furniture"
+2d_physics/layer_2="player"
+2d_physics/layer_3="npc"
+2d_physics/layer_4="room"
 avoidance/layer_1="player"
 avoidance/layer_2="npc"
 

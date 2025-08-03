@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhow8hnet8k3o"]
+
+[ext_resource type="Script" uid="uid://rxpbqqng52fe" path="res://scripts/room.gd" id="1_wt7ul"]
+[ext_resource type="Script" uid="uid://v6tao82jlqnl" path="res://scripts/room_activity.gd" id="2_4bdic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt7ul"]
+size = Vector2(157, 145)
+
+[node name="toilet" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_wt7ul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -71)
+shape = SubResource("RectangleShape2D_wt7ul")
+debug_color = Color(0.842411, 0.00108082, 0.917675, 0.42)
+
+[node name="activity1" type="Node2D" parent="."]
+position = Vector2(26, -119)
+script = ExtResource("2_4bdic")
+animation_key = "toilet_left"
+
+[node name="activity2" type="Node2D" parent="."]
+position = Vector2(25, -53)
+script = ExtResource("2_4bdic")
+animation_key = "toilet_left"
+
+[node name="activity3" type="Node2D" parent="."]
+position = Vector2(-32, -53)
+script = ExtResource("2_4bdic")
+animation_key = "urinal_left"
+
+[node name="activity4" type="Node2D" parent="."]
+position = Vector2(-32, -119)
+script = ExtResource("2_4bdic")
+animation_key = "urinal_left"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

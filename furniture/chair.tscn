@@ -11,6 +11,7 @@ size = Vector2(16, 8)
 texture = ExtResource("1_06weo")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_xj176")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

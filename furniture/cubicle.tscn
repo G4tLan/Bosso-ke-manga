@@ -18,6 +18,7 @@ position = Vector2(2, -24)
 texture = ExtResource("1_prm7x")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1

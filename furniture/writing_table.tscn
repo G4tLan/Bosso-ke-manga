@@ -9,6 +9,7 @@ size = Vector2(38, 23)
 texture = ExtResource("1_267mj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 5.5)

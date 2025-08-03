@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://tcht53o1ygxw"]
+[gd_scene load_steps=22 format=4 uid="uid://tcht53o1ygxw"]
 
 [ext_resource type="Texture2D" uid="uid://buodq6ai6y1ur" path="res://assets/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="1_u007l"]
 [ext_resource type="PackedScene" uid="uid://b1datk5k3qsk7" path="res://furniture/chair.tscn" id="3_05b3v"]
@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://gtqiq8eklbq8" path="res://furniture/cubicle.tscn" id="6_pqwta"]
 [ext_resource type="PackedScene" uid="uid://c7bfo8dspr16t" path="res://furniture/stamping_table.tscn" id="8_xxnbo"]
 [ext_resource type="PackedScene" uid="uid://dbs1uvgiqyjv4" path="res://furniture/writing_table.tscn" id="9_nspkh"]
-[ext_resource type="PackedScene" uid="uid://dixah275kwlpu" path="res://furniture/printer/printer.tscn" id="10_nspkh"]
+[ext_resource type="PackedScene" uid="uid://dixah275kwlpu" path="res://furniture/printer.tscn" id="10_nspkh"]
 [ext_resource type="PackedScene" uid="uid://uy5rthx4fqjl" path="res://furniture/desk.tscn" id="11_u7dbb"]
 [ext_resource type="PackedScene" uid="uid://b36a456p8p3sc" path="res://characters/npcs/npc_julia.tscn" id="12_e6kkb"]
-[ext_resource type="PackedScene" uid="uid://bhow8hnet8k3o" path="res://level1/rooms/room.tscn" id="13_wledn"]
+[ext_resource type="Script" uid="uid://bxcxmcsqwfkpn" path="res://scripts/task.gd" id="13_wledn"]
 [ext_resource type="Script" uid="uid://b648t37drureo" path="res://scripts/clock.gd" id="13_xhhf7"]
+[ext_resource type="Script" uid="uid://rxpbqqng52fe" path="res://scripts/room.gd" id="14_801t3"]
+[ext_resource type="Script" uid="uid://v6tao82jlqnl" path="res://scripts/room_activity.gd" id="15_6k32w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0scbb"]
 texture = ExtResource("1_u007l")
@@ -807,22 +809,43 @@ position = Vector2(550, 451)
 position = Vector2(460, 368)
 
 [node name="NPCs" type="Node2D" parent="."]
+position = Vector2(178, 169)
 
-[node name="npc 1" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
-position = Vector2(131, 220)
-speed = 40.0
-destination = NodePath("../../rooms/toilet")
+[node name="npc 1" parent="NPCs" instance=ExtResource("12_e6kkb")]
+position = Vector2(-117, 30)
+tasks = Array[ExtResource("13_wledn")]([null])
 
 [node name="CharacterBody2D" parent="NPCs" instance=ExtResource("12_e6kkb")]
-position = Vector2(363, 274)
+position = Vector2(62, 1)
 
 [node name="CharacterBody2D2" parent="NPCs" instance=ExtResource("12_e6kkb")]
-position = Vector2(380, 125)
+position = Vector2(62, 12)
 
 [node name="rooms" type="Node2D" parent="."]
 
-[node name="toilet" parent="rooms" instance=ExtResource("13_wledn")]
-position = Vector2(624, 139)
+[node name="toilet" type="Node2D" parent="rooms"]
+position = Vector2(624, 144)
+script = ExtResource("14_801t3")
+
+[node name="room1" type="Node2D" parent="rooms/toilet"]
+position = Vector2(26, -119)
+script = ExtResource("15_6k32w")
+animation_key = "toilet_left"
+
+[node name="room2" type="Node2D" parent="rooms/toilet"]
+position = Vector2(25, -53)
+script = ExtResource("15_6k32w")
+animation_key = "toilet_left"
+
+[node name="room3" type="Node2D" parent="rooms/toilet"]
+position = Vector2(-32, -53)
+script = ExtResource("15_6k32w")
+animation_key = "urinal_left"
+
+[node name="room4" type="Node2D" parent="rooms/toilet"]
+position = Vector2(-32, -119)
+script = ExtResource("15_6k32w")
+animation_key = "urinal_left"
 
 [node name="Clock" type="Node2D" parent="."]
 script = ExtResource("13_xhhf7")

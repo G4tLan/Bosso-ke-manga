@@ -1,8 +1,8 @@
 [gd_scene load_steps=54 format=3 uid="uid://b36a456p8p3sc"]
 
+[ext_resource type="Script" uid="uid://sujxhbj0palh" path="res://characters/npcs/npc_employee.gd" id="1_6y7mv"]
 [ext_resource type="Texture2D" uid="uid://djkbopa2crxij" path="res://assets/Modern tiles_Free/Characters_free/Alex_idle_anim_16x16.png" id="1_nkxo0"]
 [ext_resource type="Texture2D" uid="uid://dyn84dvuxfwhb" path="res://assets/Modern tiles_Free/Characters_free/Alex_run_16x16.png" id="2_75pyr"]
-[ext_resource type="Script" uid="uid://sujxhbj0palh" path="res://characters/npcs/npc_employee.gd" id="3_6y7mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75pyr"]
 size = Vector2(8, 6.5)
@@ -388,8 +388,8 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_6y7mv")
+collision_mask = 15
+script = ExtResource("1_6y7mv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
@@ -414,4 +414,6 @@ avoidance_mask = 7
 debug_enabled = true
 debug_path_custom_color = Color(0.0745098, 0, 0.741176, 1)
 
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

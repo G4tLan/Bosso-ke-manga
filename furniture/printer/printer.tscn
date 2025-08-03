@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dixah275kwlpu"]
 
 [ext_resource type="Texture2D" uid="uid://gxdf87nnqglc" path="res://assets/free-office-pixel-art/printer.png" id="1_nx31h"]
-[ext_resource type="Script" uid="uid://bkpf7pxrb3xtf" path="res://furniture/printer.gd" id="2_lhglc"]
+[ext_resource type="Script" uid="uid://bkpf7pxrb3xtf" path="res://furniture/printer/printer.gd" id="2_lhglc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhglc"]
 size = Vector2(29, 16)
@@ -49,6 +49,7 @@ hframes = 2
 script = ExtResource("2_lhglc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 8)
