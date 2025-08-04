@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwu6h7nm2e6nu"]
+
+[ext_resource type="Script" uid="uid://v6tao82jlqnl" path="res://scripts/room_activity.gd" id="1_58vky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ima3"]
+
+[node name="activity1" type="Area2D"]
+script = ExtResource("1_58vky")
+animation_key = "toilet_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2ima3")
+debug_color = Color(0.50706, 0.578982, 3.85046e-07, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

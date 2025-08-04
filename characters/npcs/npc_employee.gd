@@ -12,6 +12,7 @@ class_name NPC
 var _last_direction := Vector2.DOWN
 var _is_stationary = false
 var _currentRoom: Room
+var _currentActivity: RoomActivity
 
 func _ready() -> void:
 	global_timer.connect("quarter_hour_event", Callable(self, "_on_quarter_hour"))
@@ -56,10 +57,28 @@ func set_room(room: Room) -> void:
 	if _is_stationary:
 		_currentRoom = room
 
+		var available_activity = _currentRoom.get_random_available_activity()
+		if available_activity == null:
+			return
+			#get the current room waiting area location
+
+		agent.target_position = available_activity.location
+		collision_shape.disabled = true
+		_is_stationary = false
+
 func exit_room() -> void:
+	_currentRoom = null
+	
+func set_activity(activity: RoomActivity) -> void:
+	if _is_stationary:
+		_currentActivity = activity
+		#to test delay for 5 secs and leave activity
+
+func exit_activity() -> void:
 	_currentRoom = null
 
 func update_walk_animation():
+	#print("walk animation")
 	if abs(_last_direction.x) > abs(_last_direction.y):
 		if _last_direction.x > 0:
 			animated_sprite.play("walk_right")

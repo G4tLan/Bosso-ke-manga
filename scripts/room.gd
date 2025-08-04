@@ -33,13 +33,18 @@ func _ready():
 func get_random_available_activity() -> RoomActivity:
 	var available = activities.filter(func(a): return not a.is_occupied)
 	if available.is_empty():
-		return null  # Or handle fallback logic
-	return available[randi() % available.size()]
+		return null
+	
+	var activity = available[randi() % available.size()]
+	activity.is_occupied = true
+	return activity
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is NPC:
 		(body as NPC).set_room(self)
 
 func _on_body_exited(body: Node2D) -> void:
+	#check if queue has waiting npcs
+	#call 'get_random_available_activity()' and set_activity to npc
 	if body is NPC:
 		(body as NPC).exit_room()

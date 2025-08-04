@@ -715,7 +715,7 @@ navigation_polygon = SubResource("NavigationPolygon_e6kkb")
 metadata/_edit_lock_ = true
 
 [node name="player" parent="." instance=ExtResource("3_q1fja")]
-position = Vector2(272, 184)
+position = Vector2(591, 58)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2, 2)
@@ -809,15 +809,25 @@ position = Vector2(460, 368)
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="npc 1" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
-position = Vector2(131, 220)
+position = Vector2(659, 176)
 speed = 40.0
 destination = NodePath("../../rooms/toilet")
 
-[node name="CharacterBody2D" parent="NPCs" instance=ExtResource("12_e6kkb")]
+[node name="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
 position = Vector2(363, 274)
+destination = NodePath("../../rooms/toilet")
 
-[node name="CharacterBody2D2" parent="NPCs" instance=ExtResource("12_e6kkb")]
+[node name="CharacterBody2D2" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
 position = Vector2(380, 125)
+destination = NodePath("../../rooms/toilet")
+
+[node name="CharacterBody2D3" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
+position = Vector2(483, 213)
+destination = NodePath("../../rooms/toilet")
+
+[node name="CharacterBody2D4" parent="NPCs" node_paths=PackedStringArray("destination") instance=ExtResource("12_e6kkb")]
+position = Vector2(448, 52)
+destination = NodePath("../../rooms/toilet")
 
 [node name="rooms" type="Node2D" parent="."]
 

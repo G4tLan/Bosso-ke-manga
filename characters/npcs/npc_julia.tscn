@@ -396,6 +396,7 @@ light_mask = 3
 visibility_layer = 3
 position = Vector2(0, -3.25)
 shape = SubResource("RectangleShape2D_75pyr")
+debug_color = Color(0.617793, 0, 0.234659, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -404,6 +405,7 @@ animation = &"walk_up"
 frame_progress = 0.776064
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 5.0
 path_max_distance = 20.0
 avoidance_enabled = true
 radius = 5.0

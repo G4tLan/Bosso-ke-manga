@@ -394,6 +394,7 @@ speed = 80.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_6p3mc")
+debug_color = Color(1.64848e-06, 0.45722, 0.105875, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
