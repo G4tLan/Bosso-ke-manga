@@ -810,23 +810,22 @@ position = Vector2(460, 368)
 
 [node name="npc 1" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
 position = Vector2(659, 176)
-speed = 40.0
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(363, 274)
+position = Vector2(716, 223)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D2" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(380, 125)
+position = Vector2(641, 216)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D3" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(483, 213)
+position = Vector2(605, 224)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D4" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(448, 52)
+position = Vector2(673, 217)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="rooms" type="Node2D" parent="."]

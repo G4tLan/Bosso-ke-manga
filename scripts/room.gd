@@ -33,6 +33,9 @@ func get_random_available_activity() -> RoomActivity:
 	var activity = available[randi() % available.size()]
 	activity.is_occupied = true
 	return activity
+	
+func add_npc_to_waiting_q(npc: NPC):
+	_waiting_queue.push_back(npc)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is NPC:
@@ -40,9 +43,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is NPC:
-		(body as NPC).exit_room()
-		if !_waiting_queue.is_empty():
-			var activity = get_random_available_activity()
-			var next_npc = _waiting_queue.pop_front()
-			if next_npc != null:
-				next_npc.set_activity(activity)
+		if (body as NPC).exit_room():
+			if !_waiting_queue.is_empty():
+				var next_npc = _waiting_queue.pop_front()
+				if next_npc != null:
+					next_npc.attempt_to_do_activity()

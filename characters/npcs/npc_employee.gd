@@ -7,13 +7,14 @@ class_name NPC
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var global_timer = get_node("/root/MainArea/Clock")
 
-@export var speed := 80.0
+@export var speed := 40.0
 @export var targetRoom: Room
 var _last_direction := Vector2.DOWN
 var _is_stationary = false
 var _currentRoom: Room
 var _currentActivity: RoomActivity
-var targetActivity: RoomActivity
+var _targetActivity: RoomActivity
+var _is_in_waiting_area: bool = false #TODO: reset when setting a new task
 
 func _ready() -> void:
 	global_timer.connect("quarter_hour_event", Callable(self, "_on_quarter_hour"))
@@ -53,20 +54,16 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 
 #my functions
 
-func set_room(room: Room) -> void:
-	# called when npc enters room area2D
-	if targetRoom == null: return
+func set_room(room: Room) -> bool:
+	# called when npc enters room area2D ➡️
+	if targetRoom == null: return false
 	if targetRoom.room_type == room.room_type:
 		_currentRoom = room
 		targetRoom = null
-		var available_activity = _currentRoom.get_random_available_activity()
-		if available_activity == null:
-			print("go to waiting ", _currentRoom.waiting_area.global_position)
-			agent.target_position = _currentRoom.waiting_area.global_position
-			_is_stationary = false
-		else:
-			print("set target activity ")
-			_set_target_activity(available_activity)
+		attempt_to_do_activity()
+		return true
+
+	return false
 
 func _set_target_room(room: Room) -> void:
 	targetRoom = room
@@ -74,27 +71,44 @@ func _set_target_room(room: Room) -> void:
 	_is_stationary = false
 	collision_shape.disabled = true
 
-func exit_room() -> void:
-	# called when npc exits room area2D
+func exit_room() -> bool:
+	# called when npc exits room area2D ➡️
+	if _currentRoom == null || _is_in_waiting_area: return false;
+
 	_currentRoom = null
 	collision_shape.disabled = true
-	
+	return true
+
 func set_activity(activity: RoomActivity) -> bool:
 	# called when npc enteres activity area2D ➡️
-	if targetActivity == null: return false
+	if _targetActivity == null: return false
 
-	if targetActivity.activity_type == activity.activity_type:
+	if _targetActivity.activity_type == activity.activity_type:
+		_is_in_waiting_area = false
 		_currentActivity = activity
-		targetActivity = null
+		_targetActivity = null
+		_delay(randi() % (30 - 5 + 1) + 5, Callable(self, "_go_to_location"), [Vector2(540,randi() % (300 - 30 + 1) + 30)])
 		return true
-		#delay(2, func(): agent.target_position = Vector2(550, 250))
-		
+
 	return false
 
 func _set_target_activity(activity: RoomActivity):
-	targetActivity = activity
+	_targetActivity = activity
+	_is_in_waiting_area = false
 	agent.target_position = activity.global_position
 	_is_stationary = false
+	
+func attempt_to_do_activity():
+	if _currentRoom == null: return
+	var available_activity = _currentRoom.get_random_available_activity()
+	if available_activity == null:
+		print("go to waiting ", _currentRoom.waiting_area.global_position)
+		_is_in_waiting_area = true
+		_currentRoom.add_npc_to_waiting_q(self)
+		_go_to_location(_currentRoom.waiting_area.global_position)
+	else:
+		print("set target activity ")
+		_set_target_activity(available_activity)
 
 func exit_activity() -> bool:
 	# called when npc exits activity area2D ➡️
@@ -126,10 +140,14 @@ func update_idle_animation():
 			animated_sprite.play("idle_down")
 		else:
 			animated_sprite.play("idle_up")
-			
-func delay(seconds: float, callback: Callable) -> void:
+
+func _go_to_location(location: Vector2):
+		agent.target_position = location
+		_is_stationary = false
+
+func _delay(seconds: float, callback: Callable, args: Array = []) -> void:
 	await get_tree().create_timer(seconds).timeout
-	callback.call()
+	callback.callv(args)
 
 func _on_quarter_hour(time: float) -> void:
 	print("Time is ",time)
