@@ -809,23 +809,35 @@ position = Vector2(460, 368)
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="npc 1" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(659, 176)
+position = Vector2(128, 302)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(716, 223)
+position = Vector2(61, 228)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D2" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(641, 216)
+position = Vector2(61, 302)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D3" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(605, 224)
+position = Vector2(238, 78)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="CharacterBody2D4" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
-position = Vector2(673, 217)
+position = Vector2(302, 78)
+targetRoom = NodePath("../../rooms/toilet")
+
+[node name="CharacterBody2D5" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
+position = Vector2(129, 220)
+targetRoom = NodePath("../../rooms/toilet")
+
+[node name="CharacterBody2D6" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
+position = Vector2(302, 152)
+targetRoom = NodePath("../../rooms/toilet")
+
+[node name="CharacterBody2D7" parent="NPCs" node_paths=PackedStringArray("targetRoom") instance=ExtResource("12_e6kkb")]
+position = Vector2(236, 156)
 targetRoom = NodePath("../../rooms/toilet")
 
 [node name="rooms" type="Node2D" parent="."]
