@@ -19,18 +19,25 @@ debug_color = Color(0.842411, 0.00108082, 0.917675, 0.42)
 [node name="activity1" parent="." instance=ExtResource("2_qjsnx")]
 position = Vector2(26, -119)
 animation_key = "idle_right"
+activity_type = 0
 
 [node name="activity4" parent="." instance=ExtResource("2_qjsnx")]
 position = Vector2(-32, -120)
 animation_key = "idle_left"
+activity_type = 3
 
 [node name="activity2" parent="." instance=ExtResource("2_qjsnx")]
 position = Vector2(24, -56)
 animation_key = "idle_right"
+activity_type = 1
 
 [node name="activity3" parent="." instance=ExtResource("2_qjsnx")]
 position = Vector2(-32, -56)
 animation_key = "idle_left"
+activity_type = 2
+
+[node name="waiting_area" type="Node2D" parent="."]
+position = Vector2(80, 24)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

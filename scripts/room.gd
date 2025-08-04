@@ -14,21 +14,16 @@ enum RoomType {
 }
 
 @export var room_type: RoomType
+@onready var waiting_area = $waiting_area
 var activities: Array[RoomActivity]
-var destination: Vector2
+var _waiting_queue: Array[NPC] = []
 
 func _ready():
-
-	# Set destination to this Room's position
-	destination = global_position
-
 	# Gather child activities
 	activities = []
 	for child in get_children():
 		if child is RoomActivity:
 			activities.append(child)
-			
-	var t = 90;
 	
 func get_random_available_activity() -> RoomActivity:
 	var available = activities.filter(func(a): return not a.is_occupied)
@@ -44,7 +39,10 @@ func _on_body_entered(body: Node2D) -> void:
 		(body as NPC).set_room(self)
 
 func _on_body_exited(body: Node2D) -> void:
-	#check if queue has waiting npcs
-	#call 'get_random_available_activity()' and set_activity to npc
 	if body is NPC:
 		(body as NPC).exit_room()
+		if !_waiting_queue.is_empty():
+			var activity = get_random_available_activity()
+			var next_npc = _waiting_queue.pop_front()
+			if next_npc != null:
+				next_npc.set_activity(activity)

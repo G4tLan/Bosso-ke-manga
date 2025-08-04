@@ -2,20 +2,33 @@ extends Node2D
 
 class_name RoomActivity
 
-var location: Vector2
+enum ActivityType {
+	ACTIVITY_A,
+	ACTIVITY_B,
+	ACTIVITY_C,
+	ACTIVITY_D,
+	ACTIVITY_E,
+	ACTIVITY_F,
+	ACTIVITY_G,
+	ACTIVITY_H,
+	ACTIVITY_I,
+}
+
 @export var animation_key: String
+@export var activity_type: ActivityType
 var is_occupied: bool
 
 func _ready() -> void:
-	location = global_position
 	is_occupied = false
 
 func _on_body_entered(body: Node2D) -> void:
-	is_occupied = true
 	if body is NPC:
-		(body as NPC).set_activity(self)
+		if (body as NPC).set_activity(self):
+			print("activity entered -> occupied")
+			is_occupied = true
 
 func _on_body_exited(body: Node2D) -> void:
-	is_occupied = false
 	if body is NPC:
-		(body as NPC).exit_activity()
+		if (body as NPC).exit_activity():
+			print("activity exited -> unoccupied")
+			is_occupied = false

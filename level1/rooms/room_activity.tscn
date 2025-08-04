@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ima3"]
 
 [node name="activity1" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("1_58vky")
 animation_key = "toilet_left"
 
