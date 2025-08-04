@@ -61,8 +61,9 @@ func set_room(room: Room) -> void:
 		targetRoom = null
 		var available_activity = _currentRoom.get_random_available_activity()
 		if available_activity == null:
-			print("go to waiting ")
+			print("go to waiting ", _currentRoom.waiting_area.global_position)
 			agent.target_position = _currentRoom.waiting_area.global_position
+			_is_stationary = false
 		else:
 			print("set target activity ")
 			_set_target_activity(available_activity)
