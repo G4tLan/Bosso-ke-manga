@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Schedule" load_steps=2 format=3 uid="uid://b2gbto74fayql"]
+
+[ext_resource type="Script" uid="uid://i52v3d3kg0we" path="res://scripts/schedule.gd" id="1_oikdv"]
+
+[resource]
+script = ExtResource("1_oikdv")
+normal_bias = Array[int]([0, 1, 2, 3, 7, 0, 0, 0])
+boardroom_bias = Array[int]([5, 0, 1, 5, 0, 5, 0, 5])
+kitchen_bias = Array[int]([3, 2, 0, 3, 2, 3, 2, 3])
+metadata/_custom_type_script = "uid://i52v3d3kg0we"

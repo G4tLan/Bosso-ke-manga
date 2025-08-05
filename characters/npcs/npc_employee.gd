@@ -8,10 +8,12 @@ class_name NPC
 @onready var global_timer = get_node("/root/MainArea/Clock")
 
 @export var speed := 40.0
-@export var targetRoom: Room
+@export var defaultRoom: Room
+@export var schedule: Schedule
 var _last_direction := Vector2.DOWN
 var _is_stationary = false
 var _currentRoom: Room
+var _targetRoom: Room
 var _currentActivity: RoomActivity
 var _targetActivity: RoomActivity
 var _is_in_waiting_area: bool = false #TODO: reset when setting a new task
@@ -19,8 +21,8 @@ var _is_in_waiting_area: bool = false #TODO: reset when setting a new task
 func _ready() -> void:
 	global_timer.connect("quarter_hour_event", Callable(self, "_on_quarter_hour"))
 	
-	if targetRoom:
-		_set_target_room(targetRoom)
+	if _targetRoom:
+		_set_target_room(_targetRoom)
 
 func _physics_process(delta: float) -> void:
 	if _is_stationary:
@@ -56,18 +58,18 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 
 func set_room(room: Room) -> bool:
 	# called when npc enters room area2D ➡️
-	if targetRoom == null: return false
-	if targetRoom.room_type == room.room_type:
+	if _targetRoom == null: return false
+	if _targetRoom.room_type == room.room_type:
 		_currentRoom = room
-		targetRoom = null
+		_targetRoom = null
 		attempt_to_do_activity()
 		return true
 
 	return false
 
 func _set_target_room(room: Room) -> void:
-	targetRoom = room
-	agent.target_position = targetRoom.global_position
+	_targetRoom = room
+	agent.target_position = _targetRoom.global_position
 	_is_stationary = false
 	collision_shape.disabled = true
 
